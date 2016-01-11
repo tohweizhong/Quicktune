@@ -29,7 +29,7 @@ nrow(tg)
 
 
 
-# mods <- TwoLevelTune(.Xytrain = Xtrain, .frml = "income ~.",
-#                     .prop_config = 0.1, .tr_ctrl1 = tr_ctrl, .tr_ctrl2 = tr_ctrl,
-#                     .tg1 = tg, .nrounds = seq(100, 1000, by = 100),
-#                     .eta = c(0.1, 0.05, 0.01), .nthread = 4, .verbose = 1)
+mods <- TwoLevelTune(.Xytrain = Xtrain, .frml = "income ~.",
+                    .prop_config = 0.1, .tr_ctrl1 = tr_ctrl, .tr_ctrl2 = tr_ctrl,
+                    .tg1 = tg, .nrounds = seq(100, 1000, by = 100),
+                    .eta = c(0.1, 0.05, 0.01), .nthread = 4, .verbose = 1)
