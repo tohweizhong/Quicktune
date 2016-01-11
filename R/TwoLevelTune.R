@@ -27,6 +27,15 @@ TwoLevelTune <- function(data, frml, prop_config = 0.2,
                          nthread = 4, verbose = 1,
                          metric = "Accuracy"){
 
+    cat("Remember to set the classProbs and summary function in trainControl()\n")
+    
+    # function to push new element to end of list
+    list.push <- function(lst, newitem){
+        
+        lst[[length(lst) + 1]] <- newitem
+        return(lst)
+    }
+    
     require(caret)
 
     cat("==== First level tuning ====\n")
@@ -45,18 +54,18 @@ TwoLevelTune <- function(data, frml, prop_config = 0.2,
     
     tmp <- which(colnames(xgb1$results) == metric)
     tune_df1 <- xgb1$results[order(xgb1$results[,tmp], decreasing = T),]
-
-    #View(tune_df1)
-
+    
+    cat("=========== head(tune_df1) ===========\n")
+    print(head(tune_df1))
+    
     num_config <- ceiling(prop_config * nrow(tune_df1))
     tune_df1 <- tune_df1[seq(1:num_config),]
-    #tune_df1 <- subset(tune_df1, select = -c(nrounds, eta, Accuracy, AccuracySD, Kappa, KappaSD))
 
     # populate second tuning grid
     tg2 <- list()
     for(i in seq(nrow(tune_df1))){
-        for(nr in .nrounds){
-            for(et in .eta){
+        for(nr in nrounds){
+            for(et in eta){
                 tmp <- as.vector(c(tune_df1[i,c("max_depth", "gamma", "colsample_bytree", "min_child_weight")], nr, et))
                 tg2 <- list.push(tg2, tmp)
             }
