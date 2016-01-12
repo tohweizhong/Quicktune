@@ -27,7 +27,7 @@ TwoLevelTune <- function(data, frml, prop_config = 0.2,
                          nthread = 4, verbose = 1,
                          metric = "Accuracy"){
 
-    cat("Remember to set the classProbs and summary function in trainControl()\n")
+    cat("Remember to set the classProbs and summary function in trainControl() for classification problems\n")
     
     # function to push new element to end of list
     list.push <- function(lst, newitem){
