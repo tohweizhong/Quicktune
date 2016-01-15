@@ -58,6 +58,8 @@ TwoLevelTune <- function(data, frml, prop_config = 0.2,
     cat("=========== head(tune_df1) ===========\n")
     print(head(tune_df1))
     
+    write.csv(xgb1$results, file = "tmp/tune.csv")
+    
     num_config <- ceiling(prop_config * nrow(tune_df1))
     tune_df1 <- tune_df1[seq(1:num_config),]
 
