@@ -89,6 +89,26 @@ PopulateNext <- function(tg0, xgb){
     }
     tg1 <- CheckColSampleByTree(tg1)
     
+    # Sanity check for the other hyperparameters
+    # Cannot be negative or zero
+    
+    # leaving out gamma
+    
+    tmp_min <- min(tg1$eta)
+    if(tmp_min <= 0) tg1$eta[which(tg1$eta == tmp_min)] <- gran["eta"]
+    
+    tmp_min <- min(tg1$max_depth)
+    if(tmp_min <= 0) tg1$max_depth[which(tg1$max_depth == tmp_min)] <- gran["max_depth"]
+    
+    tmp_min <- min(tg1$colsample_bytree)
+    if(tmp_min <= 0) tg1$colsample_bytree[which(tg1$colsample_bytree == tmp_min)] <- gran["colsample_bytree"]
+    
+    tmp_min <- min(tg1$min_child_weight)
+    if(tmp_min <= 0) tg1$min_child_weight[which(tg1$min_child_weight == tmp_min)] <- gran["min_child_weight"]
+    
+    tmp_min <- min(tg1$nrounds)
+    if(tmp_min <= 0) tg1$nrounds[which(tg1$nrounds == tmp_min)] <- gran["nrounds"]
+    
     return(tg1)
 }
 
