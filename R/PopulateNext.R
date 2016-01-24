@@ -24,6 +24,7 @@ PopulateNext <- function(tg0, xgb){
     # check for any NAs in the model
     if(length(coe) != length(pvals)){
         
+        
         idx <- which(is.na(match(names(coe), names(pvals))))
         tmp <- append(pvals[1:idx-1], NA)
         pvals <- append(tmp, pvals[idx:length(pvals)])
