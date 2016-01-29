@@ -2,7 +2,7 @@
 # Function to populate a tuning grid
 # based on the OLS model built on previous tuning results
 
-PopulateNext <- function(tg0, xgb){
+PopulateNext <- function(xgb){
     
     require(Standard)
     
@@ -12,6 +12,7 @@ PopulateNext <- function(tg0, xgb){
     k <- 1
     
     # rearrange columns in tg0
+    tg0 <- xgb$results
     tg0 <- subset(tg0, select = c(eta, max_depth, gamma, colsample_bytree, min_child_weight, nrounds))
     params <- colnames(tg0)
     
