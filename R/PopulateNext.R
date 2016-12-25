@@ -8,12 +8,12 @@ PopulateNext <- function(xgb){
     
     # define granularity of hyperparameters and factor to traverse by
     gran <- c(0.01, 1, 1, 0.1, 5, 50)
-    names(gran) <- c("eta", "max_depth", "gamma", "colsample_bytree", "min_child_weight", "nrounds")
+    names(gran) <- c("eta", "max_depth", "gamma", "colsample_bytree", "min_child_weight", "nrounds", "subsample")
     k <- 1
     
     # rearrange columns in tg0
     tg0 <- xgb$results
-    tg0 <- subset(tg0, select = c(eta, max_depth, gamma, colsample_bytree, min_child_weight, nrounds))
+    tg0 <- subset(tg0, select = c(eta, max_depth, gamma, colsample_bytree, min_child_weight, nrounds, "subsample"))
     params <- colnames(tg0)
     
     # construct OLS model

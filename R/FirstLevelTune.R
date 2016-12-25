@@ -9,11 +9,13 @@
 # @ tr_ctrl2: caret::trainControl() object from caret for second level tuning
 # @ objective: objective parameter in xgboost
 # @ tg1: expand.grid(), first level tuning grid
-# @ nrounds: vector for number of rounds to tune
-# @ eta: vector for various eta to tune
 # @ nthread: nthread argument for caret::train()
 # @ verbose: verbose argument for caret::train()
 # @ metric: metric argument for caret::train()
+
+# @ nrounds: vector for number of rounds to tune
+# @ eta: vector for various eta to tune
+
 
 FirstLevelTune <- function(data, frml, prop_config = 0.2,
                            tr_ctrl1,
